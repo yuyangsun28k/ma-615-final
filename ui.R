@@ -51,6 +51,7 @@ ui <- dashboardPage(
     tabItems(
       tabItem(tabName = "general",
               tabBox(
+                width = 18,
                 tabPanel("Map of Bahamas",
                          fluidPage(
                            leafletOutput("mymap"),  # Render the leaflet map
@@ -67,11 +68,15 @@ ui <- dashboardPage(
                 ),
                 # Photo Gallery with Descriptions
                 fluidRow(
-                  column(4, tags$img(src = "img1.jpeg", style = "width:100%;"), p("Description for Image 1")),
-                  column(4, tags$img(src = "img2.jpeg", style = "width:100%;"), p("Description for Image 2")),
-                  column(4, tags$img(src = "img3.jpeg", style = "width:100%;"), p("Description for Image 3"))
-                )
-              ),
+                  column(4, 
+                         selectInput("imageSelect", "Image Gallery:", 
+                                     choices = c("Image 1" = "img1.jpeg", 
+                                                 "Image 2" = "img2.jpeg", 
+                                                 "Image 3" = "img3.jpeg"))
+                  ),
+                  column(8, 
+                         uiOutput("imageDisplay"))
+              )),
                 tabPanel("Narrative Description", textOutput("narrative"))
               )
       ),

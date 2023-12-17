@@ -36,6 +36,19 @@ server <- function(input, output, session) {
       markers_displayed(TRUE)
     }
   })
+  
+  
+  
+  output$imageDisplay <- renderUI({
+    # Depending on the selected image, display it
+    img_src <- switch(input$imageSelect,
+                      "img1.jpeg" = "img1.jpeg",
+                      "img2.jpeg" = "img2.jpeg",
+                      "img3.jpeg" = "img3.jpeg")
+    
+    tags$img(src = img_src, style = "width:100%;")
+  })
+  
 }
 
 
