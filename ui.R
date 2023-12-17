@@ -77,7 +77,8 @@ ui <- dashboardPage(
                   column(8, 
                          uiOutput("imageDisplay"))
               )),
-                tabPanel("Narrative Description", textOutput("narrative"))
+              tabPanel("Narrative Description", uiOutput("narrative"))
+              
               )
       ),
       tabItem(tabName = "demographics",

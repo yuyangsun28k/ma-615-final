@@ -58,6 +58,36 @@ server <- function(input, output, session) {
       setView(lng = -77.3963, lat = 25.0343, zoom = 2)  # A zoom level that shows the globe
   })
   
+  
+  #### narrative
+  output$narrative <- renderUI({
+    HTML(paste0(
+      "The Bahamas is a beautiful island country located in the Lucayan Archipelago of the West Indies in the North Atlantic Ocean. The Bahamas is situated north of Cuba, northwest of Hispaniola (home to the Dominican Republic and Haiti), and southeast of Florida, USA. Originally inhabited by the Arawak and Lucayan peoples, part of the Taíno group, Bahamas has more than 3000 islands, cays and islets. The capital is Nassau on the island of New Providence. The Royal Bahamas Defence Force describes The Bahamas' territory as encompassing 470,000 km2 (180,000 sq mi) of ocean space.<br><br>",
+      "Capital and Largest City: Nassau (25°04′41″N 77°20′19″W)<br>",
+      "Official Languages: English<br>",
+      "Vernacular Language: Bahamian Creole<br>",
+      "Ethnic Groups (2020): 90.6% Black, 4.7% White, 2.1% Mixed, 1.9% Other, 0.7% Unspecified<br>",
+      "Religion (2020): 93.0% Christianity (75.1% Protestantism, 17.9% Other Christian), 4.5% No Religion, 1.9% Folk Religions, 0.6% Other<br>",
+      "Demonym: Bahamian<br>",
+      "Government: Unitary Parliamentary Constitutional Monarchy<br>",
+      "- Monarch: Charles III<br>",
+      "- Governor-General: Cynthia A. Pratt<br>",
+      "- Prime Minister: Philip Davis<br>",
+      "Legislature: Parliament (Upper House: Senate, Lower House: House of Assembly)<br>",
+      "Independence from the United Kingdom: 10 July 1973<br>",
+      "Area: 13,943 km2 (5,383 sq mi), 28% Water<br>",
+      "Population (2022 Census): 399,314<br>",
+      "GDP (PPP, 2023 Estimate): $18.146 Billion Total, $44,949 Per Capita<br>",
+      "GDP (Nominal, 2023 Estimate): $13.876 Billion Total, $34,370 Per Capita<br>",
+      "HDI (2019): 0.814 (Very High, 58th)<br>",
+      "Currency: Bahamian Dollar (BSD), United States Dollar (USD)<br>",
+      "Time Zone: UTC−5 (EST), Summer (DST) UTC−4 (EDT)"
+    ))
+  })
+
+  
+  
+  
 }
 
 
