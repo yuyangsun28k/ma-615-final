@@ -38,7 +38,7 @@ server <- function(input, output, session) {
   })
   
   
-  
+  #### photos of Bahamas
   output$imageDisplay <- renderUI({
     # Depending on the selected image, display it
     img_src <- switch(input$imageSelect,
@@ -47,6 +47,15 @@ server <- function(input, output, session) {
                       "img3.jpeg" = "img3.jpeg")
     
     tags$img(src = img_src, style = "width:100%;")
+  })
+  
+  
+  #### global location of Bahamas
+  output$GlobalMap <- renderLeaflet({
+    leaflet() %>%
+      addTiles() %>%  # Add default OpenStreetMap map tiles
+      addMarkers(lng = -77.3963, lat = 25.0343, popup = "Bahamas") %>% # Marker for Bahamas
+      setView(lng = -77.3963, lat = 25.0343, zoom = 2)  # A zoom level that shows the globe
   })
   
 }
