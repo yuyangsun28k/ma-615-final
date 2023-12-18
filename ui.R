@@ -188,6 +188,18 @@ ui <- dashboardPage(
                     tabPanel("GNI", plotOutput("gniPlot_bc")),
                     tabPanel("Population Projection", plotOutput("populationPlot_bc")),
                     tabPanel("Mortality Rate", plotOutput("mortalityPlot_bc"))
+                  )),
+              box(tableOutput("comparisonTable4"),
+                  title = "Comparison Charts with Jamaica",
+                  status = "warning",
+                  solidHeader = TRUE,
+                  collapsible = TRUE,
+                  collapsed = TRUE,
+                  tabsetPanel(
+                    tabPanel("GDP", plotOutput("gdp_bj")),
+                    tabPanel("GNI", plotOutput("gniPlot_bj")),
+                    tabPanel("Population Projection", plotOutput("populationPlot_bj")),
+                    tabPanel("Mortality Rate", plotOutput("mortalityPlot_bj"))
                   ))
       ),
       tabItem(tabName = "swot",

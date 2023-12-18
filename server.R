@@ -270,6 +270,30 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
     mortality_plot_bc
   })
   
+  ## vs Jamaica
+  #GDP comparison plot
+  source("compare_jamaica.R")
+  output$gdp_bj <- renderPlot({
+    # Create a function to generate and return the combined GDP plot
+    generateCombinedGDPPlot_j()
+  })
+  
+  
+  # GNI comparison plot
+  output$gniPlot_bj <- renderPlot({
+    gni_plot_bj
+  })
+  
+  # Population projection comparison plot
+  output$populationPlot_bj <- renderPlot({
+    population_plot_bj
+  })
+  
+  # Mortality rate comparison plot
+  output$mortalityPlot_bj <- renderPlot({
+    mortality_plot_bj
+  })
+  
   
   
   
