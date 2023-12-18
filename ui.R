@@ -3,8 +3,7 @@ library(shinydashboard)
 library(leaflet)
 library(ggplot2)
 library(readr)
-
-source("gdp.R")
+library(shinyWidgets)
 
 customCSS <- "
 /* Custom Header Style */
@@ -113,7 +112,12 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
-                  width = 18, tableOutput("demographicsTable"), title = "Population Overview", status = "warning", solidHeader = TRUE, collapsible = TRUE)
+                  width = 18, tableOutput("demographicsTable"), title = "Population Overview", status = "warning", solidHeader = TRUE, collapsible = TRUE,
+                  sliderTextInput(inputId = "selectedYear",
+                                  label = "Choose a Year:",
+                                  choices = as.character(seq(1970, 2100, 1)),
+                                  grid = TRUE),
+                  plotOutput("populationPlot")),
       )),
       tabItem(tabName = "comparison",
               box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),

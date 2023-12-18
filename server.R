@@ -83,25 +83,45 @@ server <- function(input, output, session) {
     ))
   })
 
+  plot_list <- list(plot1, plot2, plot3, plot4, plot5, plot6, plot7)
+  
   output$selectedPlot <- renderPlot({
     # Determine which plot to display based on user selection
     selected_item <- input$plotChoice
     
     # Create a mapping from plot names to their index
-    plot_map <- c("Final consumption expenditure"=1, 
-                  "Household consumption expenditure"=2,
-                  "General government final consumption expenditure"=3,
-                  "Gross capital formation"=4,
-                  "Gross fixed capital formation"=5,
-                  "Changes in inventories"=6,
-                  "Exports of goods and services"=7)
+    plot_map <- c("Final consumption expenditure" = 1, 
+                  "Household consumption expenditure" = 2,
+                  "General government final consumption expenditure" = 3,
+                  "Gross capital formation" = 4,
+                  "Gross fixed capital formation" = 5,
+                  "Changes in inventories" = 6,
+                  "Exports of goods and services" = 7)
     
     # Retrieve the corresponding plot index
     plot_index <- plot_map[[selected_item]]
     
     # Display the selected plot
-    print(plots[[plot_index]])
+    plot_list[[plot_index]]
   })
+  
+  source("pop.R")
+  # Reactive expression to filter data based on selected year
+  filtered_data <- reactive({
+    subset(pop, Year.s. == as.numeric(input$selectedYear))
+  })
+  
+  # Render the plot
+  output$populationPlot <- renderPlot({
+    selected_year <- as.numeric(input$selectedYear)
+    filtered_pop <- subset(pop, Year.s. >= 1970 & Year.s. <= selected_year)
+    
+    ggplot(filtered_pop, aes(x = Year.s., y = Value)) +
+      geom_line(color = "cyan4") +
+      labs(title = "Population Projections for Bahamas over years",
+           x = "Year", y = "Population in Thousands")
+  })
+  
   
   
 }
