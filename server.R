@@ -123,6 +123,13 @@ server <- function(input, output, session) {
   })
   
   
+  source("gni.R")
+  output$gni_plot <- renderPlot({
+    gni_plot
+  })
+  
+  
+  
   
 }
 

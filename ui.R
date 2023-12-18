@@ -92,6 +92,7 @@ ui <- dashboardPage(
                   status = "primary",
                   solidHeader = TRUE,
                   collapsible = TRUE,
+                  collapsed = TRUE,
                   column(
                     width = 4, # Column for the select input
                     selectInput("plotChoice", "Select a plot:",
@@ -112,12 +113,17 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 box(
-                  width = 18, tableOutput("demographicsTable"), title = "Population Overview", status = "warning", solidHeader = TRUE, collapsible = TRUE,
+                  width = 18, tableOutput("demographicsTable1"), title = "Population Overview", status = "warning", solidHeader = TRUE, collapsible = TRUE,collapsed = TRUE,
                   sliderTextInput(inputId = "selectedYear",
                                   label = "Choose a Year:",
                                   choices = as.character(seq(1970, 2100, 1)),
                                   grid = TRUE),
                   plotOutput("populationPlot")),
+      ),
+      fluidRow(
+        box(
+          width = 18, tableOutput("demographicsTable2"), title = "GNI Overview", status = "success", solidHeader = TRUE, collapsible = TRUE,collapsed = TRUE,
+          plotOutput("gni_plot")),
       )),
       tabItem(tabName = "comparison",
               box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),
