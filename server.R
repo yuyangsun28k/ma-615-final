@@ -134,6 +134,27 @@ server <- function(input, output, session) {
   })
   
   
+  comparison_countries <- data.frame(
+    Country = c("Nassau, Bahamas", "Havana, Cuba", "Kingston, Jamaica", "Port-au-Prince, Haiti", "Santo Domingo, Dominican Republic"),
+    Lat = c(25.0343, 23.1136, 18.0179, 18.5944, 18.4861),
+    Lon = c(-77.3963, -82.3666, -76.8099, -72.3074, -69.9312)
+  )
+  
+  output$mapRegional <- renderLeaflet({
+    leaflet(comparison_countries) %>%
+      addTiles() %>%
+      setView(lng = -77.5, lat = 24.0, zoom = 5) %>%
+      
+      # Add colored markers for each country
+      addCircleMarkers(lat = 25.0343, lng = -77.3963, color = "#00ABC9", popup = "Nassau, Bahamas") %>%
+      addCircleMarkers(lat = 23.1136, lng = -82.3666, color = "darkblue", popup = "Havana, Cuba") %>%
+      addCircleMarkers(lat = 18.0179, lng = -76.8099, color = "darkgreen", popup = "Kingston, Jamaica") %>%
+      addCircleMarkers(lat = 18.5944, lng = -72.3074, color = "darkred", popup = "Port-au-Prince, Haiti") %>%
+      addCircleMarkers(lat = 18.4861, lng = -69.9312, color = "purple", popup = "Santo Domingo, Dominican Republic")
+    
+    # Example of adding an icon marker
+    # addAwesomeMarkers(lat = [latitude], lng = [longitude], icon = awesomeIcons(icon = 'flag', iconColor = 'white', markerColor = 'red'), popup = [popup text])
+  })
   
   
 }

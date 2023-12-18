@@ -1,6 +1,7 @@
 library(shiny)
 library(shinydashboard)
 library(leaflet)
+library(leaflet.extras)
 library(ggplot2)
 library(readr)
 library(shinyWidgets)
