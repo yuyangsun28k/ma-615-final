@@ -72,10 +72,15 @@ ui <- dashboardPage(
                 # Photo Gallery with Descriptions
                 fluidRow(
                   column(4, 
-                         selectInput("imageSelect", "Image Gallery:", 
-                                     choices = c("Image 1" = "img1.jpeg", 
-                                                 "Image 2" = "img2.jpeg", 
-                                                 "Image 3" = "img3.jpeg"))
+                         selectInput("imageSelect", "Key factors with Info:", 
+                                     choices = c("Pristine white sand beaches" = "img4.jpg", 
+                                                 "The swimming pigs of Exuma" = "img5.jpg", 
+                                                 "The playground of world’s rich & famous" = "img6.jpg",
+                                                 "Scuba diving and snorkeling" = "img7.jpg",
+                                                 "Junkanoo festival" = "img8.jpg",
+                                                 "Pirate Forts" = "img9.jpg",
+                                                 "Multiple Islands" = "img1.jpeg")),
+                         textOutput("imageDescription")
                   ),
                   column(8, 
                          uiOutput("imageDisplay"))

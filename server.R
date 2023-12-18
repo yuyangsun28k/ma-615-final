@@ -40,11 +40,32 @@ server <- function(input, output, session) {
   output$imageDisplay <- renderUI({
     # Depending on the selected image, display it
     img_src <- switch(input$imageSelect,
-                      "img1.jpeg" = "img1.jpeg",
-                      "img2.jpeg" = "img2.jpeg",
-                      "img3.jpeg" = "img3.jpeg")
+                      "img4.jpg" = "img4.jpg",
+                      "img5.jpg" = "img5.jpg",
+                      "img6.jpg" = "img6.jpg",
+                      "img7.jpg" = "img7.jpg",
+                      "img8.jpg" = "img8.jpg",
+                      "img9.jpg" = "img9.jpg",
+                      "img1.jpeg" = "img1.jpeg")
     
     tags$img(src = img_src, style = "width:100%;")
+  })
+  
+  # Provide a description for the selected image
+  output$imageDescription <- renderText({
+    switch(input$imageSelect,
+           "img4.jpg" = "This tropical paradise truly distinguishes itself with its stunning white sand beaches, embraced by a mesmerizing spectrum of deep blue and turquoise waters. You'll encounter some of the most exquisite white sand beaches globally, making beach hopping an unparalleled experience.",
+           "img5.jpg" = "The Bahamas boasts the Caribbean's most renowned 'swimming with pigs' encounter, an absolute must-try during your island getaway. To embark on this adventure, you'll need to board a boat heading to Big Major Cay, often referred to as Pig Island. As you approach the island, you'll witness pigs swimming towards your boat, eager to greet you. This tour is family-friendly, but couples also relish the opportunity to bond with the Bahamas' swimming pigs. Big Major Cay lies approximately 82 miles southeast of Nassau and, aside from the pigs and their caretakers at certain times, the island remains uninhabited.",
+           "img6.jpg" = "Several Caribbean islands have a reputation for drawing in the wealthy and renowned, and The Bahamas ranks prominently among them. The archipelago is a top destination for affluent travelers from around the globe. Moreover, The Bahamas extends exclusive opportunities for the ultra-wealthy to acquire their very own private islands. Within The Bahamas, you can catch glimpses of oceanfront estates owned by celebrities such as Oprah Winfrey, Michael Jordan, and a host of other well-known figures.",
+           "img7.jpg" = "The Bahamas stands out as a premier destination for travelers seeking immersive diving experiences, eager to witness the underwater world at its most breathtaking. There exists a plethora of diving locations catering to both snorkelers and scuba enthusiasts. These include the Exuma Cays Land and Sea Park, the mesmerizing Andros blue holes, the awe-inspiring Conception Island Wall in Long Island, the intriguing Henry Ford Wreck in the Biminis, and the numerous vibrant reefs dotting The Abacos.",
+           "img8.jpg" = "Junkanoo is a true Caribbean extravaganza, celebrated with gusto in The Bahamas on both Christmas and New Year's Day every year. This festivity can be likened to the Bahamian interpretation of a carnival. If you've never had the opportunity to partake in a Caribbean carnival, anticipate a vibrant spectacle featuring an abundance of music, elaborate costumes, live bands, traditional instruments, lively parties, colorful parades, intricate floats, and an overall atmosphere brimming with exhilaration and enthusiasm.",
+           "img9.jpg" = "The Bahamas boasts several intriguing forts that you can explore during your visit. One of the prominent ones is Fort Charlotte, the largest fort on New Providence Island, nestled in Nassau. This fort was constructed by Lord Dunmore in 1788-1789 and takes its name from Queen Saharia Charlotte, the wife of King George III. It features various attractions, including a drawbridge, dungeons, underground passages, an arsenal of 42 cannons, and breathtaking panoramic views.
+
+Fort Fincastle, dating back to 1793, is another popular attraction with its name derived from British captain Lord Dunmore, who held the title Viscount Fincastle. Legend has it that Fincastle commissioned the fort to safeguard Nassau Harbor, and it also served as a strategic lookout point against pirates. Fort Fincastle is constructed from cut limestone.
+
+Fort Montague, another well-known fort in The Bahamas, is also crafted from local limestone. Located at the eastern end of Nassau Harbor, it holds the distinction of being the oldest fort on New Providence Island. Its history can be traced back to 1725, but its current structure was established during 1741-1742 when it played a crucial role in repelling Spanish invaders during British rule. Additionally, the site has a history of use by the United States military in 1776.",
+           "img1.jpeg" = "With over 700 islands to choose from in The Bahamas, deciding where to begin your exploration can be a delightful challenge. Fortunately, there's some organization amidst this vast archipelago."
+           )
   })
   
   
