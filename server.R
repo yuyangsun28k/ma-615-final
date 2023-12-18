@@ -1,6 +1,4 @@
-# Assuming you have similar CSV files for the Bahamas
-bahamasCities <- read.csv(file = "gdp.csv")  # File containing city data for the Bahamas
-bahamasIslands <- read.csv(file = "total_population_thousands.csv")  # File containing island data for the Bahamas
+source("gdp.R")
 
 # Coordinates for a central location in the Bahamas, e.g., Nassau
 nassauCoords <- list(lat = 25.0343, lng = -77.3963)
@@ -85,7 +83,25 @@ server <- function(input, output, session) {
     ))
   })
 
-  
+  output$selectedPlot <- renderPlot({
+    # Determine which plot to display based on user selection
+    selected_item <- input$plotChoice
+    
+    # Create a mapping from plot names to their index
+    plot_map <- c("Final consumption expenditure"=1, 
+                  "Household consumption expenditure"=2,
+                  "General government final consumption expenditure"=3,
+                  "Gross capital formation"=4,
+                  "Gross fixed capital formation"=5,
+                  "Changes in inventories"=6,
+                  "Exports of goods and services"=7)
+    
+    # Retrieve the corresponding plot index
+    plot_index <- plot_map[[selected_item]]
+    
+    # Display the selected plot
+    print(plots[[plot_index]])
+  })
   
   
 }

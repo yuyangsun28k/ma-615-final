@@ -4,6 +4,8 @@ library(leaflet)
 library(ggplot2)
 library(readr)
 
+source("gdp.R")
+
 customCSS <- "
 /* Custom Header Style */
 .skin-blue .main-header .navbar {
@@ -30,6 +32,7 @@ customCSS <- "
   left: 0;
 }
 "
+
 
 ui <- dashboardPage(
   skin = "blue",
@@ -82,9 +85,36 @@ ui <- dashboardPage(
               )
       ),
       tabItem(tabName = "demographics",
-              box(plotOutput("popOverviewPlot"), title = "Population Overview", status = "primary", solidHeader = TRUE, collapsible = TRUE),
-              box(tableOutput("demographicsTable"), title = "Demographic Table", status = "warning", solidHeader = TRUE, collapsible = TRUE)
-      ),
+              # First fluid row for the Population Overview plot
+              fluidRow(
+                box(
+                  width = 18,
+                  title = "GDP Overview",
+                  status = "primary",
+                  solidHeader = TRUE,
+                  collapsible = TRUE,
+                  column(
+                    width = 4, # Column for the select input
+                    selectInput("plotChoice", "Select a plot:",
+                                choices = c("Final consumption expenditure", 
+                                            "Household consumption expenditure",
+                                            "General government final consumption expenditure",
+                                            "Gross capital formation",
+                                            "Gross fixed capital formation",
+                                            "Changes in inventories",
+                                            "Exports of goods and services")
+                    )
+                  ),
+                  column(
+                    width = 8, # Column for displaying the selected plot
+                    plotOutput("selectedPlot")
+                  )
+                )
+              ),
+              fluidRow(
+                box(
+                  width = 18, tableOutput("demographicsTable"), title = "Population Overview", status = "warning", solidHeader = TRUE, collapsible = TRUE)
+      )),
       tabItem(tabName = "comparison",
               box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),
               box(plotOutput("comparisonPlot"), title = "Comparative Analysis", status = "success", solidHeader = TRUE, collapsible = TRUE),
