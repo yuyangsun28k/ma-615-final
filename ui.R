@@ -152,7 +152,7 @@ ui <- dashboardPage(
                     status = "danger"
                   ),
               ),
-              box(leafletOutput("mapRegional"), title = "Regional Map General Overview", status = "info", solidHeader = TRUE, collapsible = TRUE),
+              box(leafletOutput("mapRegional"), title = "Regional Map General Overview", status = "success", solidHeader = TRUE, collapsible = TRUE),
               box(tableOutput("comparisonTable1"),
                   title = "Comparison Charts with Haiti",
                   status = "danger",
@@ -167,7 +167,7 @@ ui <- dashboardPage(
                   )),
               box(tableOutput("comparisonTable2"),
                   title = "Comparison Charts with Dominica",
-                  status = "success",
+                  status = "info",
                   solidHeader = TRUE,
                   collapsible = TRUE,
                   collapsed = TRUE,
@@ -176,6 +176,18 @@ ui <- dashboardPage(
                     tabPanel("GNI", plotOutput("gniPlot_bd")),
                     tabPanel("Population Projection", plotOutput("populationPlot_bd")),
                     tabPanel("Mortality Rate", plotOutput("mortalityPlot_bd"))
+                  )),
+              box(tableOutput("comparisonTable3"),
+                  title = "Comparison Charts with Cuba",
+                  status = "primary",
+                  solidHeader = TRUE,
+                  collapsible = TRUE,
+                  collapsed = TRUE,
+                  tabsetPanel(
+                    tabPanel("GDP", plotOutput("gdp_bc")),
+                    tabPanel("GNI", plotOutput("gniPlot_bc")),
+                    tabPanel("Population Projection", plotOutput("populationPlot_bc")),
+                    tabPanel("Mortality Rate", plotOutput("mortalityPlot_bc"))
                   ))
       ),
       tabItem(tabName = "swot",
