@@ -172,11 +172,40 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
       addCircleMarkers(lat = 18.0179, lng = -76.8099, color = "darkgreen", popup = "Kingston, Jamaica") %>%
       addCircleMarkers(lat = 18.5944, lng = -72.3074, color = "darkred", popup = "Port-au-Prince, Haiti") %>%
       addCircleMarkers(lat = 18.4861, lng = -69.9312, color = "purple", popup = "Santo Domingo, Dominican Republic")
-    
-    # Example of adding an icon marker
-    # addAwesomeMarkers(lat = [latitude], lng = [longitude], icon = awesomeIcons(icon = 'flag', iconColor = 'white', markerColor = 'red'), popup = [popup text])
+})
+  
+  # Reactive expression to track user selections
+  selected_countries <- reactive({
+    input$Id001
   })
   
+  # Dynamic UI for maps
+  output$dynamicMaps <- renderUI({
+    map_outputs <- lapply(selected_countries(), function(country) {
+      map_id <- paste0("map_", gsub(" ", "_", country))  # Create a unique ID for each map
+      
+      leafletOutput(outputId = map_id, width = "100%")
+    })
+    
+    do.call(fluidRow, map_outputs)
+  })
+  
+  # Create each map based on the selection
+  observe({
+    for (country in selected_countries()) {
+      local({
+        map_id <- paste0("map_", gsub(" ", "_", country))
+        country_data <- comparison_countries[comparison_countries$Country == country, ]
+        
+        output[[map_id]] <- renderLeaflet({
+          leaflet() %>%
+            addTiles() %>%
+            setView(lat = country_data$Lat, lng = country_data$Lon, zoom = 6) %>%
+            addMarkers(lat = country_data$Lat, lng = country_data$Lon, popup = country)
+        })
+      })
+    }
+  })
   
 }
 

@@ -2,7 +2,7 @@ library(ggplot2)
 library(dplyr)
 
 # Load gdp dataset
-gdp <- read.csv(file = "gdp.csv")
+gdp <- read.csv(file = "data/gdp.csv")
 
 # Filter the data for each item
 item1_data <- gdp %>% filter(Item == "Final consumption expenditure")

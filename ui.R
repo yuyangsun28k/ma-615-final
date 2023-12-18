@@ -137,8 +137,21 @@ ui <- dashboardPage(
           plotOutput("mob")),
       )),
       tabItem(tabName = "comparison",
+              fluidRow(
+                box(
+                  width = 16,
+                  plotOutput("comparisonPlot"), title = "Comparative Analysis", status = "success", solidHeader = TRUE, collapsible = TRUE,
+                  awesomeCheckboxGroup(
+                    inputId = "Id001",
+                    label = "Select Countries:", 
+                    choices = c("Bahamas", "Cuba", "Jamaica", "Haiti", "Dominican Republic"),
+                    inline = TRUE,
+                    status = "danger"
+                  ),
+                  
+                  # Placeholder for dynamic map outputs
+                  uiOutput("dynamicMaps")),),
               box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),
-              box(plotOutput("comparisonPlot"), title = "Comparative Analysis", status = "success", solidHeader = TRUE, collapsible = TRUE),
               box(tableOutput("comparisonTable"), title = "Comparison Table", status = "danger", solidHeader = TRUE, collapsible = TRUE)
       ),
       tabItem(tabName = "swot",

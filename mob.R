@@ -1,8 +1,8 @@
 library(dplyr)
 
 # Read the data frames
-infant <- read.csv("infant_mortality_rate_thousands.csv")
-under5 <- read.csv("under5_mortality_rate_thousands.csv")
+infant <- read.csv("data/infant_mortality_rate_thousands.csv")
+under5 <- read.csv("data/under5_mortality_rate_thousands.csv")
 
 # Add a new column to identify the source of each row
 infant$Source <- "infant"

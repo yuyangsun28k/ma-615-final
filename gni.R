@@ -1,5 +1,5 @@
 library(ggplot2)
-gni <- read.csv("GNI_USD.csv")
+gni <- read.csv("data/GNI_USD.csv")
 
 gni_plot <- ggplot(data = gni, aes(x=Year, y=Value)) +
   geom_line (color = "#DA70D6") +
