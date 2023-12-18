@@ -235,29 +235,28 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
   
   
   
-  
-  # Reactive expression to track user selections
-  selected_countries <- reactive({
-    input$Id001
-  })
-  
-  # Dynamic UI for maps
-  output$dynamicMaps <- renderUI({
-    map_outputs <- lapply(selected_countries(), function(country) {
-      map_id <- paste0("map_", gsub(" ", "_", country))  # Create a unique ID for each map
-      
-      leafletOutput(outputId = map_id, width = "100%")
+  source("country_location.R")
+  # Reactive expression to track country selections
+  output$countryMapsTabs <- renderUI({
+    req(input$Id001) # Ensure that there is at least one selection
+    
+    # Start a tabset
+    tabs <- lapply(input$Id001, function(country) {
+      tabPanel(
+        title = country,
+        leafletOutput(outputId = paste0("map_", gsub(" ", "_", country)), width = "100%", height = "400px")
+      )
     })
     
-    do.call(fluidRow, map_outputs)
+    do.call(tabsetPanel, tabs)
   })
   
   # Create each map based on the selection
   observe({
-    for (country in selected_countries()) {
+    for (country in input$Id001) {
       local({
         map_id <- paste0("map_", gsub(" ", "_", country))
-        country_data <- comparison_countries[comparison_countries$Country == country, ]
+        country_data <- country_location[country_location$Country == country, ]
         
         output[[map_id]] <- renderLeaflet({
           leaflet() %>%
@@ -268,7 +267,6 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
       })
     }
   })
-  
   
   
   

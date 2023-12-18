@@ -31,6 +31,10 @@ customCSS <- "
   top: 0;
   left: 0;
 }
+
+/* Style for main content when boxes are expanded */
+.content {overflow-y: auto; /* Add scroll to main content */
+}
 "
 
 
@@ -41,6 +45,7 @@ ui <- dashboardPage(
                           tags$img(src = "flag.svg", width = "50px",
                                    height = "50px",)
                   )),
+  
   dashboardSidebar(
     sidebarMenu(
       menuItem("General Description", tabName = "general", icon = icon("info")),
@@ -137,10 +142,8 @@ ui <- dashboardPage(
           plotOutput("mob")),
       )),
       tabItem(tabName = "comparison",
-              fluidRow(
-                box(
-                  width = 16,
-                  plotOutput("comparisonPlot"), title = "Comparative Analysis", status = "success", solidHeader = TRUE, collapsible = TRUE,
+              box(
+                uiOutput("countryMapsTabs"), title = "Regional Map Closer View", status = "success", solidHeader = TRUE, collapsible = TRUE,
                   awesomeCheckboxGroup(
                     inputId = "Id001",
                     label = "Select Countries:", 
@@ -148,12 +151,10 @@ ui <- dashboardPage(
                     inline = TRUE,
                     status = "danger"
                   ),
-                  
-                  # Placeholder for dynamic map outputs
-                  uiOutput("dynamicMaps")),),
-              box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),
+              ),
+              box(leafletOutput("mapRegional"), title = "Regional Map General Overview", status = "info", solidHeader = TRUE, collapsible = TRUE),
               box(tableOutput("comparisonTable1"),
-                  title = "Comparison Table with Haiti",
+                  title = "Comparison Charts with Haiti",
                   status = "danger",
                   solidHeader = TRUE,
                   collapsible = TRUE,
@@ -165,7 +166,7 @@ ui <- dashboardPage(
                     tabPanel("Mortality Rate", plotOutput("mortalityPlot_bh"))
                   )),
               box(tableOutput("comparisonTable2"),
-                  title = "Comparison Table with Dominica",
+                  title = "Comparison Charts with Dominica",
                   status = "success",
                   solidHeader = TRUE,
                   collapsible = TRUE,
