@@ -172,7 +172,45 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
       addCircleMarkers(lat = 18.0179, lng = -76.8099, color = "darkgreen", popup = "Kingston, Jamaica") %>%
       addCircleMarkers(lat = 18.5944, lng = -72.3074, color = "darkred", popup = "Port-au-Prince, Haiti") %>%
       addCircleMarkers(lat = 18.4861, lng = -69.9312, color = "purple", popup = "Santo Domingo, Dominican Republic")
-})
+  })
+  
+  
+  #GDP comparison plot
+  source("compare_haiti.R")
+  output$gdp_bh <- renderPlot({
+    # Create a function to generate and return the combined GDP plot
+    generateCombinedGDPPlot()
+  })
+  
+  
+  # GNI comparison plot
+  output$gniPlot_bh <- renderPlot({
+    gni_plot_bh
+    })
+  
+  # Population projection comparison plot
+  output$populationPlot_bh <- renderPlot({
+    population_plot_bh
+    })
+  
+  # Mortality rate comparison plot
+  output$mortalityPlot_bh <- renderPlot({
+    mortality_plot_bh
+  })
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   # Reactive expression to track user selections
   selected_countries <- reactive({
@@ -206,6 +244,9 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
       })
     }
   })
+  
+  
+  
   
 }
 

@@ -152,7 +152,18 @@ ui <- dashboardPage(
                   # Placeholder for dynamic map outputs
                   uiOutput("dynamicMaps")),),
               box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),
-              box(tableOutput("comparisonTable"), title = "Comparison Table", status = "danger", solidHeader = TRUE, collapsible = TRUE)
+              box(tableOutput("comparisonTable"),
+                  title = "Comparison Table",
+                  status = "danger",
+                  solidHeader = TRUE,
+                  collapsible = TRUE,
+                  collapsed = TRUE,
+                  tabsetPanel(
+                    tabPanel("GDP", plotOutput("gdp_bh")),
+                    tabPanel("GNI", plotOutput("gniPlot_bh")),
+                    tabPanel("Population Projection", plotOutput("populationPlot_bh")),
+                    tabPanel("Mortality Rate", plotOutput("mortalityPlot_bh"))
+                  ))
       ),
       tabItem(tabName = "swot",
               box(textOutput("swotAnalysis"), title = "SWOT Analysis", status = "primary", solidHeader = TRUE, collapsible = TRUE)
