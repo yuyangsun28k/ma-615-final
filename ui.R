@@ -124,6 +124,11 @@ ui <- dashboardPage(
         box(
           width = 18, tableOutput("demographicsTable2"), title = "GNI Overview", status = "success", solidHeader = TRUE, collapsible = TRUE,collapsed = TRUE,
           plotOutput("gni_plot")),
+      ),
+      fluidRow(
+        box(
+          width = 18, tableOutput("demographicsTable3"), title = "Mortality Overview", status = "danger", solidHeader = TRUE, collapsible = TRUE,collapsed = TRUE,
+          plotOutput("mob")),
       )),
       tabItem(tabName = "comparison",
               box(leafletOutput("mapRegional"), title = "Regional Map", status = "info", solidHeader = TRUE, collapsible = TRUE),

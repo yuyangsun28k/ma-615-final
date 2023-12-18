@@ -128,6 +128,11 @@ server <- function(input, output, session) {
     gni_plot
   })
   
+  source("mob.R")
+  output$mob <- renderPlot({
+    mob
+  })
+  
   
   
   
