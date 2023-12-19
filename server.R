@@ -340,6 +340,39 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
     }
   })
   
+  source("compare_table.R")
+  # GNI Table with filters
+  output$gniTable <- DT::renderDataTable({
+    DT::datatable(gni_table, 
+                  filter = 'top', 
+                  options = list(pageLength = 15, autoWidth = TRUE), 
+                  rownames = FALSE)
+  })
+  
+  # GDP Table with filters
+  output$gdpTable <- DT::renderDataTable({
+    DT::datatable(gdp_table, 
+                  filter = 'top', 
+                  options = list(pageLength = 15, autoWidth = TRUE), 
+                  rownames = FALSE)
+  })
+  
+  # Population Table with filters
+  output$popTable <- DT::renderDataTable({
+    DT::datatable(pop_table, 
+                  filter = 'top', 
+                  options = list(pageLength = 15, autoWidth = TRUE), 
+                  rownames = FALSE)
+  })
+  
+  # Mortality Table with filters
+  output$mortalityTable <- DT::renderDataTable({
+    DT::datatable(mob_table, 
+                  filter = 'top', 
+                  options = list(pageLength = 15, autoWidth = TRUE), 
+                  rownames = FALSE)
+  })
+  
   
   
 }

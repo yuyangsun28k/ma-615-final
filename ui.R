@@ -5,6 +5,7 @@ library(leaflet.extras)
 library(ggplot2)
 library(readr)
 library(shinyWidgets)
+library(DT)
 
 customCSS <- "
 /* Custom Header Style */
@@ -200,7 +201,17 @@ ui <- dashboardPage(
                     tabPanel("GNI", plotOutput("gniPlot_bj")),
                     tabPanel("Population Projection", plotOutput("populationPlot_bj")),
                     tabPanel("Mortality Rate", plotOutput("mortalityPlot_bj"))
-                  ))
+                  )),
+              box(
+                title = "Data Comparisons", status = "primary", solidHeader = TRUE, collapsible = TRUE, width = 12,
+                tabsetPanel(
+                  id = "dataTabs",
+                  tabPanel("GNI", DT::dataTableOutput("gniTable")),
+                  tabPanel("GDP", DT::dataTableOutput("gdpTable")),
+                  tabPanel("Population", DT::dataTableOutput("popTable")),
+                  tabPanel("Mortality", DT::dataTableOutput("mortalityTable"))
+                )
+              )
       ),
       tabItem(tabName = "swot",
               box(textOutput("swotAnalysis"), title = "SWOT Analysis", status = "primary", solidHeader = TRUE, collapsible = TRUE)

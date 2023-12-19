@@ -16,7 +16,7 @@ under5_c<-read.csv("data/cuba_under5.csv")
 gdp_b <- gdp_b %>% mutate(Country = "Bahamas")
 gdp_c <- gdp_c %>% mutate(Country = "Cuba")
 
-# Create bar charts for Bahamas and cuba
+# Create bar charts for Bahamas and Cuba
 plot_bahamas <- ggplot(gdp_b, aes(x = Year, y = Value, fill = Country)) +
   geom_bar(stat = "identity") +
   labs(title = "GDP Comparison: Bahamas",
@@ -78,7 +78,7 @@ pop_b <- pop_b %>%
 pop_c <- pop_c %>%
   filter(Year.s. >= 2000, Year.s. <= 2010, Variant == "Medium") %>%
   select(Year.s., Value) %>%
-  mutate(Country = "cuba")
+  mutate(Country = "Cuba")
 
 # Combine the datasets
 combined_pop <- rbind(pop_b, pop_c)
@@ -86,7 +86,7 @@ combined_pop <- rbind(pop_b, pop_c)
 # Create a population projection comparison plot
 population_plot_bc <- ggplot(combined_pop, aes(x = Year.s., y = Value, color = Country)) +
   geom_line() +
-  labs(title = "Population Projections for Bahamas and cuba (Medium Variant) over Years",
+  labs(title = "Population Projections for Bahamas and Cuba (Medium Variant) over Years",
        x = "Year", y = "Population in Thousands") +
   scale_color_manual(values = c("Bahamas" = "cyan4", "Cuba" = "blue"))
 
@@ -98,9 +98,9 @@ print(population_plot_bc)
 # Combine the data frames row-wise
 # Add a new column to identify the source of each row
 infant_b$Source <- "Infant (Bahamas)"
-infant_c$Source <- "Infant (cuba)"
+infant_c$Source <- "Infant (Cuba)"
 under5_b$Source <- "Under Age 5 (Bahamas)"
-under5_c$Source <- "Under Age 5 (cuba)"
+under5_c$Source <- "Under Age 5 (Cuba)"
 
 combined_data <- rbind(infant_b, infant_c, under5_b, under5_c)
 combined_data <- na.omit(combined_data)
@@ -108,7 +108,7 @@ combined_data <- na.omit(combined_data)
 # Create a plot using the combined data with four distinct colors
 mortality_plot_bc <- ggplot(combined_data, aes(x = Year.s., y = Value, color = Source)) +
   geom_line() +
-  labs(title = "Mortality Rate in Thousands for Bahamas and cuba",
+  labs(title = "Mortality Rate in Thousands for Bahamas and Cuba",
        x = "Year(s)", y = "Mortality Rate") +
   scale_color_manual(values = c("Infant (Bahamas)" = "red", 
                                 "Infant (Cuba)" = "blue", 
