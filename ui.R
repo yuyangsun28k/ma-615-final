@@ -214,7 +214,12 @@ ui <- dashboardPage(
               )
       ),
       tabItem(tabName = "swot",
-              box(textOutput("swotAnalysis"), title = "SWOT Analysis", status = "primary", solidHeader = TRUE, collapsible = TRUE)
+              tabsetPanel(
+                tabPanel("Strengths", textOutput("strengthsText")),
+                tabPanel("Weaknesses", textOutput("weaknessesText")),
+                tabPanel("Opportunities", textOutput("opportunitiesText")),
+                tabPanel("Threats", textOutput("threatsText"))
+              )
       )
     )
   )

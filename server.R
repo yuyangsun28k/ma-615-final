@@ -341,7 +341,6 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
   })
   
   source("compare_table.R")
-  # GNI Table with filters
   output$gniTable <- DT::renderDataTable({
     DT::datatable(gni_table, 
                   filter = 'top', 
@@ -371,6 +370,26 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
                   filter = 'top', 
                   options = list(pageLength = 15, autoWidth = TRUE), 
                   rownames = FALSE)
+  })
+  
+  
+  output$strengthsText <- renderText({
+    paste("GDP (current US$): $12.9 billion\n",
+          "GDP growth (annual %): 14.4%\n",
+          "High-technology exports (current US$): $6.2 million")
+  })
+  
+  output$weaknessesText <- renderText({
+    paste("Inflation, consumer prices (annual %): 5.61%\n",
+          "Unemployment rate: 10%")
+  })
+  
+  output$opportunitiesText <- renderText({
+    "Foreign direct investment, net inflows (BoP, current US$): $1.25 billion"
+  })
+  
+  output$threatsText <- renderText({
+    "CO2 emissions (metric tons per capita): 6.04"
   })
   
   
