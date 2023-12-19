@@ -374,24 +374,49 @@ Fort Montague, another well-known fort in The Bahamas, is also crafted from loca
   
   
   output$strengthsText <- renderText({
-    paste("GDP (current US$): $12.9 billion\n",
-          "GDP growth (annual %): 14.4%\n",
-          "High-technology exports (current US$): $6.2 million")
+    HTML(paste0("GDP (current US$): $12.9 billion",
+                "A robust GDP for an island state.",
+                "GDP growth (annual %): 14.4%",
+                "This reflects the rate at which the country's economy is growing. Apparently, Bahamas is a fast-growing country.",
+                "High-technology exports (current US$): $6.2 million",
+                "This shows the value of advanced technology goods exported by the Bahamas. It indicates that Bahamas is improving recently."))
   })
   
   output$weaknessesText <- renderText({
-    paste("Inflation, consumer prices (annual %): 5.61%\n",
-          "Unemployment rate: 10%")
+    HTML(paste0("Inflation, consumer prices (annual %): 5.61%",
+                "This indicates that the general price rises and subsequently, purchasing power is falling.",
+                "Unemployment rate: 10%",
+                "This represents the percentage of the labor force that is unemployed. A 10% unemployment rate is relatively high, indicating a significant portion of the population is without work."))
   })
   
   output$opportunitiesText <- renderText({
-    "Foreign direct investment, net inflows (BoP, current US$): $1.25 billion"
+    HTML("Foreign direct investment, net inflows (BoP, current US$): $1.25 billion --
+          This suggests the Bahamas is attracting substantial foreign investments. The plot shows the comparisons with its neighboring island states.")
   })
   
   output$threatsText <- renderText({
-    "CO2 emissions (metric tons per capita): 6.04"
+    HTML("CO2 emissions (metric tons per capita): 6.04.--
+          CO2 emissions per capita might reflect environmental challenges and could have implications for the country's international environmental commitments and public health.")
   })
   
+  
+  
+  output$referenceText <- renderUI({
+    HTML(
+      paste0(
+        "<ul>",
+        "<li><a href='https://www.sandals.com/blog/things-the-bahamas-is-known-for/' target='_blank'>Things The Bahamas Is Known For</a></li>",
+        "<li><a href='https://data.un.org/Default.aspx' target='_blank'>UN Data</a></li>",
+        "<li><a href='https://www.bahamas.gov.bs/wps/portal/public/gov/hidden/mof.search/!ut/p/b1/04_Sj9CPykssy0xPLMnMz0vMAfGjzOIDnQwCg30sjR3dzX3MDTxDzEPMvD1dDEydTIEKIoEKDHAARwNC-r30ozKTcvXKk3P1DPRMzAyNjMzMzEyNjExMjIwN9cP1o_AZYBZoClWAxwF-Hvm5qfoFuRGVwQHpigBRAPcL/dl4/d5/L2dJQSEvUUt3QS80SmtFL1o2XzNHT01RQzQ4TTBWVUIwSUhNS0Q4QzgzMEg3/?mofSearchKeywd=maps&mofSearchScope=BNGIS&x=0&y=0' target='_blank'>Bahamas Government Portal</a></li>",
+        "<li><a href='https://mastering-shiny.org/action-layout.html' target='_blank'>Mastering Shiny</a></li>",
+        "<li><a href='https://chat.openai.com/' target='_blank'>OpenAI Chat</a></li>",
+        "<li><a href='https://rstudio.github.io/shinydashboard/appearance.html' target='_blank'>Shiny Dashboard Appearance</a></li>",
+        "<li><a href='https://data.worldbank.org/' target='_blank'>World Bank Data</a></li>",
+        "<li><a href='https://shinyapps.dreamrs.fr/shinyWidgets/' target='_blank'>Shiny Widgets</a></li>",
+        "</ul>"
+      )
+    )
+  })
   
   
 }

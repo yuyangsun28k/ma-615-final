@@ -52,7 +52,8 @@ ui <- dashboardPage(
       menuItem("General Description", tabName = "general", icon = icon("info")),
       menuItem("Key Demographics", tabName = "demographics", icon = icon("users")),
       menuItem("Comparative Analysis", tabName = "comparison", icon = icon("line-chart")),
-      menuItem("SWOT Analysis", tabName = "swot", icon = icon("tasks"))
+      menuItem("SWOT Analysis", tabName = "swot", icon = icon("tasks")),
+      menuItem("References", tabName = "References", icon = icon("info"))
     )
   ),
   dashboardBody(
@@ -217,9 +218,16 @@ ui <- dashboardPage(
               tabsetPanel(
                 tabPanel("Strengths", textOutput("strengthsText")),
                 tabPanel("Weaknesses", textOutput("weaknessesText")),
-                tabPanel("Opportunities", textOutput("opportunitiesText")),
-                tabPanel("Threats", textOutput("threatsText"))
+                tabPanel("Opportunities", 
+                         textOutput("opportunitiesText"),
+                         tags$img(src = "plot2.png", alt = "FDI Net Inflows", style = "width:100%;")),
+                tabPanel("Threats", 
+                         textOutput("threatsText"),
+                         tags$img(src = "plot1.png", alt = "CO2 Emissions", style = "width:100%;"))
               )
+      ),
+      tabItem(tabName = "References", 
+              uiOutput("referenceText")
       )
     )
   )
